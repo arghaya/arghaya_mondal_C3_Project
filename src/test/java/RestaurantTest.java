@@ -39,11 +39,6 @@ class RestaurantTest {
         assertFalse(isRestaurantOpen);
     }
 
-
-    //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-    //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     @Test
     public void adding_item_to_menu_should_increase_menu_size_by_1(){
         LocalTime openingTime = LocalTime.parse("10:30:00");
@@ -79,5 +74,16 @@ class RestaurantTest {
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.removeFromMenu("French fries"));
     }
-    //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    @Test
+    public void getting_order_cost_should_return_sum_of_selected_menu_items_price() {
+        // Arrange
+        List<String> selectedMenuItems = Arrays.asList("Sweet Corn Soup", "Sweets");
+
+        // Act
+        int orderCost = restaurant.getOrderCost(selectedMenuItems);
+
+        // Assert
+        assertEquals(300, orderCost);
+    }
+
 }
